@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<h2>Welcome, {{ session['username'] }}!</h2>
+<p>Select a category:</p>
+<ul>
+    <li><a href="{{ url_for('category', category_name='Depression') }}">Depression</a></li>
+    <li><a href="{{ url_for('category', category_name='Anxiety') }}">Anxiety</a></li>
+    <li><a href="{{ url_for('category', category_name='Addiction') }}">Addiction</a></li>
+    <li><a href="{{ url_for('category', category_name='Anger') }}">Anger Management</a></li>
+    <li><a href="{{ url_for('category', category_name='Insomnia') }}">Insomnia</a></li>
+</ul>
+{% endblock %}

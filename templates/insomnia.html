@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Insomnia Support{% endblock %}
+{% block content %}
+<h2>Insomnia Support</h2>
+<p>Here are some techniques to help you relax and sleep better:</p>
+<ul>
+    <li>Create a calming playlist with soothing music.</li>
+    <li>Listen to bedtime stories that encourage relaxation.</li>
+</ul>
+<p>Select and play relaxing music to aid your sleep:</p>
+
+<!-- Music Player Controls -->
+<div id="music-player">
+    <button onclick="playMusic()">Play</button>
+    <button onclick="pauseMusic()">Pause</button>
+    <button onclick="nextTrack()">Next</button>
+</div>
+
+<!-- Displaying current track name -->
+<p id="current-track">Current Track: Track 1</p>
+
+<!-- Audio Element for Music Tracks -->
+<audio id="audio" src="{{ url_for('static', filename='music/track1.mp3') }}" preload="auto"></audio>
+
+<!-- JavaScript for Music Player Controls -->
+<script>
+    // List of available music tracks
+    const tracks = [
+        "{{ url_for('static', filename='music/track1.mp3') }}",
+        "{{ url_for('static', filename='music/track2.mp3') }}",
+        "{{ url_for('static', filename='music/track3.mp3') }}"
+    ];
+
+    let currentTrackIndex = 0;
+    const audioElement = document.getElementById('audio');
+    const trackDisplay = document.getElementById('current-track');
+
+    // Play the current track
+    function playMusic() {
+        audioElement.play();
+    }
+
+    // Pause the current track
+    function pauseMusic() {
+        audioElement.pause();
+    }
+
+    // Go to the next track
+    function nextTrack() {
+        // Increment track index and reset if it exceeds track list length
+        currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
+        audioElement.src = tracks[currentTrackIndex];
+        trackDisplay.innerText = `Current Track: Track ${currentTrackIndex + 1}`;
+        audioElement.play();
+    }
+</script>
+
+{% endblock %}

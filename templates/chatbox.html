@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}{{ category }}{% endblock %}
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center;">
+    <h2>{{ category }} Chat</h2>
+    <div>
+        <a href="{{ url_for('dashboard') }}" style="margin-right: 15px;">Dashboard</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+</div>
+<div id="chatbox">
+    <!-- Display chat history -->
+    {% for message in chat_history %}
+        <div class="{{ 'user-message' if message.sender == 'user' else 'bot-response' }}">
+            {{ message.sender.capitalize() }}: {{ message.text }}
+        </div>
+    {% endfor %}
+
+    <!-- Form to submit a new message -->
+    <form action="{{ url_for('category', category_name=category) }}" method="post">
+        <label for="message">You:</label>
+        <input type="text" name="message" placeholder="Enter your thoughts..." required>
+        <button type="submit">Send</button>
+    </form>
+</div>
+{% endblock %}
