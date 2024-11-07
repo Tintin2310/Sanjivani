@@ -1,9 +1,118 @@
-{% extends "base.html" %}
-{% block title %}Login{% endblock %}
-{% block content %}
-<form action="{{ url_for('dashboard') }}" method="post">
-    <h2>Login</h2>
-    <input type="text" name="username" placeholder="Enter your name" required>
-    <button type="submit">Login</button>
-</form>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body, html {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .background {
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(to bottom, #4e4376, #2b5876);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url("{{ url_for('static', filename='login-bg.jpeg') }}");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .login-box {
+            width: 300px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+
+        .login-box img {
+            width: 80px; /* Adjust size as needed */
+            margin-bottom: 20px;
+        }
+
+        .login-box h2 {
+            color: #fff;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .input-box {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .input-box input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 25px;
+            border: none;
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .input-box select {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            background: none;
+            border: none;
+            color: #fff;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 25px;
+            background-color: #ffffff;
+            color: #4e4376;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+        <div class="login-box">
+            
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo">
+            <h2>Login</h2>
+            <form action="{{ url_for('dashboard') }}" method="post">
+                <div class="input-box">
+                    <input type="text" name="username" placeholder="Enter your name" required>
+                    <select>
+                        <option selected disabled hidden></option>
+                    </select>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
